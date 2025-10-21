@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Pessoal - Contato</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Portfólio Pessoal</h1> 
+
+    <nav>
+        <ul>
+            <li><a href="um.html">Sobre mim</a></li>
+            <li><a href="dois.html">Formação</a></li>
+            <li><a href="tres.html">Portfólio</a></li>
+            <li><a href="quatro.html">Contato</a></li>
+        </ul>
+    </nav>
+<h2>Contato</h2>
+
+<!-- Formulário de contato -->
+<form action="/enviar-contato" method="POST" id="form-contato">
+    
+    <!-- Campo para o nome -->
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+    </div>
+
+    <!-- Campo para o e-mail -->
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <!-- Campo para a mensagem -->
+    <div class="form-group">
+        <label for="msg">Digite sua Mensagem:</label>
+        <textarea id="msg" name="msg" rows="5" placeholder="Digite sua mensagem aqui..."></textarea>
+    </div>
+
+    <!-- Botão de envio -->
+    <div class="form-group">
+        <button type="submit">Enviar</button>
+    </div>
+
+</form>
+
+<script>
+    // Espera o carregamento completo da página
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Obtém referências aos elementos do formulário
+        const form = document.getElementById('form-contato');
+        const nomeInput = document.getElementById('nome');
+        const emailInput = document.getElementById('email');
+        const msgInput = document.getElementById('msg');
+
+        // Adiciona evento de submit ao formulário
+        form.addEventListener('submit', function(event) {
+
+            // Obtém e limpa os valores dos campos
+            const nome = nomeInput.value.trim();
+            const email = emailInput.value.trim();
+            const mensagem = msgInput.value.trim();
+
+            // Função para validar formato do e-mail
+            function isEmailValido(email) {
+                // Expressão regular para validar e-mail
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            }
+
+            // Valida se todos os campos estão preenchidos e o e-mail é válido
+            if (nome === '' || email === '' || mensagem === '' || !isEmailValido(email)) {
+                
+                // Exibe mensagem de erro
+                alert("Verifique se todos os campos (nome, e-mail, mensagem) estão preenchidos antes do envio. Certifique-se de que o e-mail informado possui um formato válido (exemplo: usuario@dominio.com).");
+                
+                // Impede o envio do formulário
+                event.preventDefault(); 
+            }
+            
+            // Se a validação passar, o formulário é enviado normalmente
+        });
+    });
+</script>
+
+</body>
+</html>
